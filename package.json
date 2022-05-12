@@ -6,7 +6,7 @@
   "homepage": "https://philrmass.github.io/wordle-stats",
   "scripts": {
     "build": "preact build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d build",
     "dev": "preact watch",
     "lint": "eslint src",
     "predeploy": "yarn build",
