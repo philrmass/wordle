@@ -2,29 +2,21 @@ import { useState } from 'preact/hooks';
 
 import answerWords from '../data/answerWords.txt';
 import allWords from '../data/allWords.txt';
-import LetterPositions from './LetterPositions';
-import Search from './Search';
+import {
+  wordsDefault,
+  wordNames,
+  displayDefault,
+  displayNames,
+  displayElements,
+  displayDescriptions,
+} from '../data/display.js';
 import styles from './Home.module.css';
 
 const answers = answerWords.split('\n');
 const all = allWords.split('\n');
-const defaultWords = 'answers';
-const wordNames = {
-  [defaultWords]: 'Possible Answers',
-  all: 'All Valid Guesses'
-};
-const defaultDisplay = 'positionCounts';
-const displayNames = {
-  [defaultDisplay]: 'Letter Counts Per Position',
-  search: 'Word Search',
-}
-const displays = {
-  [defaultDisplay]: LetterPositions,
-  search: Search,
-};
 
 export default function Home() {
-  const [display, setDisplay] = useState(defaultDisplay);
+  const [display, setDisplay] = useState(displayDefault);
   const [useAll, setUseAll] = useState(false);
   const words = useAll ? all : answers;
 
@@ -40,12 +32,15 @@ export default function Home() {
     <div className={styles.main}>
       <h1>Wordle Stats</h1>
       <div className={styles.dropdowns}>
-        {buildDropdown(displayNames, defaultDisplay, changeDisplay)}
+        {buildDropdown(displayNames, displayDefault, changeDisplay)}
         <span className={styles.separator}>{'of'}</span>
-        {buildDropdown(wordNames, defaultWords, changeUseAll)}
+        {buildDropdown(wordNames, wordsDefault, changeUseAll)}
+      </div>
+      <div className={styles.description}>
+        {displayDescriptions[display](words.length)}
       </div>
       <div className={styles.display}>
-        {displays[display]({ words })}
+        {displayElements[display]({ words })}
       </div>
     </div>
   );

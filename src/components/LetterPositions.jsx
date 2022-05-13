@@ -24,7 +24,7 @@ export default function LetterPositions({ words }) {
 function buildColumn(counts, total) {
   return (
     <div className={styles.column}>
-      <div className={styles.box}>H</div>
+      <div className={styles.box} />
       {counts.map(count => buildLetter(count, total))}
     </div>
   );

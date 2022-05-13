@@ -4,8 +4,8 @@
 
 .columns {
   display: flex;
-  gap: 5px;
-  color: white;
+  gap: var(--box-gap);
+  color: var(--white);
 }
 
 .column {
@@ -16,45 +16,45 @@
 
 .box {
   box-sizing: border-box;
-  width: 62px;
-  height: 62px;
+  width: var(--box-size);
+  height: var(--box-size);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #d3d6da;
-  font-size: 36px;
+  border: var(--border);
   font-weight: bold;
 }
 
 .letterCount {
   box-sizing: border-box;
-  width: 62px;
-  height: 62px;
+  width: var(--box-size);
+  height: var(--box-size);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 4px solid white;
-  background: #404040;
+  border: 4px solid var(--white);
+  background: var(--black);
 }
 
 .letter {
-  font-size: 30px;
+  font-size: var(--size-lg);
   font-weight: bold;
   text-transform: capitalize;
+  line-height: 1.15;
 }
 
 .count {
-  font-size: 14px;
+  font-size: var(--size-sm);
 }
 
 .green {
-  background: #6aaa64;
+  background: var(--green);
 }
 
 .yellow {
-  background: #c9b458;
+  background: var(--yellow);
 }
 
 .gray {
-  background: #787c73;
+  background: var(--gray);
 }

@@ -1,10 +1,26 @@
+:root {
+  --black: #404040;
+  --gray: #787c73;
+  --green: #6aaa64;
+  --yellow: #c9b458;
+  --white: #ffffff;
+  --border: 2px solid #d3d6da;
+  --box-size: 62px;
+  --box-gap: 5px;
+  --size-sm: 15px;
+  --size-md: 22px;
+  --size-lg: 30px;
+  --margin: 16px;
+}
+
 html, body {
   font: 16px 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
+  background: var(--white);
 }
 
 h1 {
-  font-size: 32px;
+  font-size: var(--size-lg);
   font-family: Georgia;
   font-weight: bold;
   transform: scale(1, 1.4);

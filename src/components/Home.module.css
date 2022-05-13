@@ -6,25 +6,30 @@
 }
 
 .main h1 {
-  margin: 16px 0;
-}
-
-.dropdowns {
-  font-size: 22px;
+  margin: var(--margin) 0;
 }
 
 .dropdowns select {
   padding: 2px 4px;
-  border: 1px solid #b0b0b8;
+  border: var(--border);
   border-radius: 4px;
-  font-size: 1em;
+  background-color: var(--white);
+  font-size: var(--size-md);
 }
 
 .separator {
   margin: 0 8px;
+  font-size: var(--size-md);
+}
+
+.description {
+  max-width: 450px;
+  margin-top: var(--margin);
+  font-size: var(--size-sm);
+  color: var(--gray);
+  text-align: center;
 }
 
 .display {
-  margin-top: 16px;
+  margin-top: var(--margin);
 }
-
