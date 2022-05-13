@@ -1,0 +1,144 @@
+.main__FhM7p {
+  box-sizing: border-box;
+}
+
+.columns__qZbLA {
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--box-gap);
+  color: var(--white);
+}
+
+.column__Z63Tw {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  gap: 8px;
+}
+
+.box__CGvn0 {
+  box-sizing: border-box;
+  width: var(--box-size);
+  height: var(--box-size);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  border: var(--border);
+  font-weight: bold;
+}
+
+.letterCount__wpSqd {
+  box-sizing: border-box;
+  width: var(--box-size);
+  height: var(--box-size);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  border: 4px solid var(--white);
+  background: var(--black);
+}
+
+.letter__\+dBPV {
+  font-size: var(--size-lg);
+  font-weight: bold;
+  text-transform: capitalize;
+  line-height: 1.15;
+}
+
+.count__ci2qK {
+  font-size: var(--size-sm);
+}
+
+.green__xafLD {
+  background: var(--green);
+}
+
+.yellow__iXcr8 {
+  background: var(--yellow);
+}
+
+.gray__Xqu\+u {
+  background: var(--gray);
+}
+
+.main__gLkfd {
+}
+
+.main__eYC4W {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  padding-bottom: 128px;
+}
+
+.main__eYC4W h1 {
+  margin: var(--margin) 0;
+}
+
+.dropdowns__Cxjyw select {
+  padding: 2px 4px;
+  border: var(--border);
+  border-radius: 4px;
+  background-color: var(--white);
+  font-size: var(--size-md);
+}
+
+.separator__UUwnC {
+  margin: 0 8px;
+  font-size: var(--size-md);
+}
+
+.description__GdBwm {
+  max-width: 450px;
+  margin-top: var(--margin);
+  font-size: var(--size-sm);
+  color: var(--gray);
+  text-align: center;
+}
+
+.display__KM5eB {
+  margin-top: var(--margin);
+}
+
+:root {
+  --black: #404040;
+  --gray: #787c73;
+  --green: #6aaa64;
+  --yellow: #c9b458;
+  --white: #ffffff;
+  --border: 2px solid #d3d6da;
+  --box-size: 62px;
+  --box-gap: 5px;
+  --size-sm: 15px;
+  --size-md: 22px;
+  --size-lg: 30px;
+  --margin: 16px;
+}
+
+html, body {
+  font: 16px 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  background: var(--white);
+}
+
+h1 {
+  font-size: var(--size-lg);
+  font-family: Georgia;
+  font-weight: bold;
+  -webkit-transform: scale(1, 1.4);
+      -ms-transform: scale(1, 1.4);
+          transform: scale(1, 1.4);
+}
+
+
+/*# sourceMappingURL=ssr-bundle.b6ffe.css.map*/
