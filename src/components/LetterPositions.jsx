@@ -47,7 +47,7 @@ function buildLetter(count, total) {
   return (
     <div className={classes}>
       <div className={styles.letter}>
-        {letter.toUpperCase()}
+        {letter}
       </div>
       <div className={styles.count}>
         {value}

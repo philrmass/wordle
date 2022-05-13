@@ -1,4 +1,3 @@
-//??? add all letters
 //??? add explanation, colors, click on a letter
 //??? add clickable letters
 import Home from './components/Home';
