@@ -41,10 +41,12 @@ export default function Home() {
       <h1>Wordle Stats</h1>
       <div className={styles.dropdowns}>
         {buildDropdown(displayNames, defaultDisplay, changeDisplay)}
-        <span>{' of '}</span>
+        <span className={styles.separator}>{'of'}</span>
         {buildDropdown(wordNames, defaultWords, changeUseAll)}
       </div>
-      {displays[display]({ words })}
+      <div className={styles.display}>
+        {displays[display]({ words })}
+      </div>
     </div>
   );
 }

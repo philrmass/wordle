@@ -1,32 +1,18 @@
-export function saveData(filePath, data) {
-  const blob = new Blob([data], { type: 'application/json' });
-  //const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filePath;
-  link.click();
+export function countLettersByPosition(index, words) {
+  return words.reduce((counts, word) => {
+    const letter = word[index];
+    const current = counts[letter] ?? 0;
 
-  setTimeout(function() {
-    URL.revokeObjectURL(url);
-  }, 0);
+    return {
+      ...counts,
+      [letter]: current + 1,
+    }
+  }, {});
 }
 
-export function loadData() {
-  return new Promise((resolve, reject) => {
-    const input = document.createElement('input');
-    input.type = 'file';
+export function sortLetterCounts(byLetter) {
+  const entries = Object.entries(byLetter);
+  const byCount = (a, b) => b[1] - a[1];
 
-    input.onchange = () => {
-      const file = input.files[0];
-      const reader = new FileReader();
-      reader.onerror = reject;
-      reader.onload = () => {
-        resolve(JSON.parse(reader.result));
-      };
-      reader.readAsText(file);
-    };
-
-    input.click();
-  });
+  return entries.sort(byCount);
 }
