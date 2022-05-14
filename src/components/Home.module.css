@@ -9,6 +9,20 @@
   margin: var(--margin) 0;
 }
 
+.title {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.version {
+  padding-left: 8px;
+  padding-bottom: calc(0.45 * var(--size-lg));
+  color: var(--gray);
+  font-size: var(--size-tn);
+}
+
 .dropdown {
 }
 

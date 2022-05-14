@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
 
+import { version } from '../../package.json';
 import answerWords from '../data/answerWords.txt';
 import allWords from '../data/allWords.txt';
 import {
@@ -30,7 +31,10 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
-      <h1>Wordle Stats 2</h1>
+      <div className={styles.title}>
+        <h1>Wordle Stats</h1>
+        <span className={styles.version}>{version}</span>
+      </div>
       <div className={styles.dropdowns}>
         {buildDropdown(displayNames, displayDefault, changeDisplay)}
         <span className={styles.separator}>{'of'}</span>
