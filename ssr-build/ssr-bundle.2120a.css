@@ -89,12 +89,16 @@
   margin: var(--margin) 0;
 }
 
+.dropdown__JuTX9 {
+}
+
 .dropdowns__Cxjyw select {
   padding: 2px 4px;
   border: var(--border);
   border-radius: 4px;
   background-color: var(--white);
   font-size: var(--size-md);
+  margin-top: 8px;
 }
 
 .separator__UUwnC {
@@ -145,4 +149,4 @@ h1 {
 }
 
 
-/*# sourceMappingURL=ssr-bundle.2bb07.css.map*/
+/*# sourceMappingURL=ssr-bundle.2120a.css.map*/
