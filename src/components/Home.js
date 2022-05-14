@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
-      <h1>Wordle Stats 1</h1>
+      <h1>Wordle Stats 2</h1>
       <div className={styles.dropdowns}>
         {buildDropdown(displayNames, displayDefault, changeDisplay)}
         <span className={styles.separator}>{'of'}</span>
