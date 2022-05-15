@@ -44,20 +44,26 @@ export default function LetterPositions({ words }) {
 
 function buildBoxes(indices, selected, onKeyDown) {
   return (
-    <div
-      tabindex='0'
-      className={styles.boxes}
-      onKeyDown={(e) => onKeyDown(e.key)}
-    >
-      {indices.map((index) => {
-        const letter = selected?.[index] ?? '';
-        return (
-          <div className={styles.box}>
-            {letter}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div
+        tabindex='0'
+        className={styles.boxes}
+        onKeyDown={(e) => onKeyDown(e.key)}
+      >
+        {indices.map((index) => {
+          const letter = selected?.[index] ?? '';
+          return (
+            <div className={styles.box}>
+              {letter}
+            </div>
+          );
+        })}
+      </div>
+      <label className={styles.input}> 
+        <input type='text' value='yo' />
+        hello
+      </label>
+    </>
   );
 }
 

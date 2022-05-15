@@ -1,5 +1,10 @@
 .main {
-  box-sizing: border-box;
+  margin: 0 calc(0.5 * var(--box-size));
+}
+
+.input {
+  background: #fed;
+  padding: 0 32px 0;
 }
 
 .boxes {
