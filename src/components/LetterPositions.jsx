@@ -4,54 +4,48 @@ import classnames from 'classnames';
 import { countLettersByPosition, sortLetterCounts } from '../utilities/words';
 import styles from './LetterPositions.module.css';
 
+//??? rearrange by column using indices
+//??? implement graph
 export default function LetterPositions({ words }) {
   const indices = Array.from(Array(5).keys());
   const byLetter = indices.map(index => countLettersByPosition(index, words));
   const sortedCounts = byLetter.map(byLetter => sortLetterCounts(byLetter));
+  const total = words.length;
 
   const [selected, setSelected] = useState('');
-  const percents = sortedCounts[4].map(sc => 100 * (sc[1] / words.length));
+  const percents = sortedCounts[4].map(sc => 100 * (sc[1] / total));
 
   const onKeyDown = (key) => {
-    // ??? separate function, use below
-    if (key === 'Backspace') {
-      const input = selected;
-      const output = input.slice(0, -1);
-      setSelected(output);
-    } else {
-      const input = selected;
-      const lowered = key.toLowerCase();
-      const match = lowered.match(/^[a-z]$/);
-      const added = `${input}${lowered}`;
-      const output = added.slice(0, 5);
-      setSelected(output);
-    }
-  };
+    setSelected((last) => {
+      if (key === 'Backspace') {
+        return last.slice(0, -1);
+      } else {
+        const lowKey = key.toLowerCase();
 
-  const onClick = (key) => {
-    // ??? use function, move to Home?
-    setSelected(key);
+        if (lowKey.match(/^[a-z]$/)) {
+          const added = `${last}${lowKey}`;
+          return added.slice(0, 5);
+        }
+        return last;
+      }
+    });
   };
 
   return (
     <div className={styles.main}>
       {buildBoxes(indices, selected, onKeyDown)}
-      {buildGraphs(sortedCounts, words.length, selected, onClick)}
-      {buildColumns(sortedCounts, words.length, selected, onClick)}
+      {buildGraphs(byLetter, total, selected)}
+      {buildColumns(sortedCounts, total, selected)}
     </div>
   );
 }
 
 function buildBoxes(indices, selected, onKeyDown) {
   return (
-    <>
-      <div
-        tabindex='0'
-        className={styles.boxes}
-        onKeyDown={(e) => onKeyDown(e.key)}
-      >
+    <label className={styles.label}> 
+      <div className={styles.boxes}>
         {indices.map((index) => {
-          const letter = selected?.[index] ?? '';
+          const letter = selected[index] ?? '';
           return (
             <div className={styles.box}>
               {letter}
@@ -59,32 +53,33 @@ function buildBoxes(indices, selected, onKeyDown) {
           );
         })}
       </div>
-      <label className={styles.input}> 
-        <input type='text' value='yo' />
-        hello
-      </label>
-    </>
+      <input
+        type='text'
+        className={styles.input}
+        value={selected}
+        onKeyDown={(e) => onKeyDown(e.key)}
+      />
+    </label>
   );
 }
 
-function buildColumns(sortedCounts, total, selected, onClick) {
-  console.log('BUILD-COLS', selected);
+function buildColumns(sortedCounts, total, selected) {
   return (
     <div className={styles.columns}>
-      {sortedCounts.map(counts => buildColumn(counts, total, onClick))}
+      {sortedCounts.map(counts => buildColumn(counts, total))}
     </div>
   );
 }
 
-function buildColumn(counts, total, onClick) {
+function buildColumn(counts, total) {
   return (
     <div className={styles.column}>
-      {counts.map(count => buildLetter(count, total, onClick))}
+      {counts.map(count => buildLetter(count, total))}
     </div>
   );
 }
 
-function buildLetter(count, total, onClick) {
+function buildLetter(count, total) {
   const letter = count[0];
   const value = count[1];
   const { green, yellow, gray } = getColors(value, total);
@@ -96,10 +91,7 @@ function buildLetter(count, total, onClick) {
   });
 
   return (
-    <div
-      className={classes}
-      onClick={() => onClick(letter)}
-    >
+    <div className={classes}>
       <div className={styles.letter}>
         {letter}
       </div>
@@ -110,17 +102,20 @@ function buildLetter(count, total, onClick) {
   );
 }
 
-function buildGraphs(sortedCounts, total, selected, onClick) {
+function buildGraphs(byLetter, total, selected) {
   //const { percent, green, yellow, gray } = getColors(value, total);
-  console.log('GR', sortedCounts, total, selected);
+  console.log('GR', byLetter, total, selected);
 
   return (
+    <div></div>
+    /*
     <div
       className={styles.graph}
       onClick={() => onClick('')}
     >
       GRAPH
     </div>
+    */
   );
 }
 
