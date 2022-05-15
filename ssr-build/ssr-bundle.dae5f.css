@@ -1,5 +1,10 @@
 .main__FhM7p {
-  box-sizing: border-box;
+  margin: 0 calc(0.5 * var(--box-size));
+}
+
+.input__1IhlH {
+  background: #fed;
+  padding: 0 32px 0;
 }
 
 .boxes__CbFX2 {
@@ -179,4 +184,4 @@ h1 {
 }
 
 
-/*# sourceMappingURL=ssr-bundle.a6f97.css.map*/
+/*# sourceMappingURL=ssr-bundle.dae5f.css.map*/
