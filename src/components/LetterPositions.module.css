@@ -7,8 +7,8 @@
 }
 
 .label input {
-  width: 0;
-  height: 0;
+  width: 1;
+  height: 1;
   padding: 0;
   border: 0;
   margin: 0;
