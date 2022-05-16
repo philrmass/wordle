@@ -2,9 +2,9 @@ import { useState } from 'preact/hooks';
 import classnames from 'classnames';
 
 import { countLettersByPosition, sortLetterCounts } from '../utilities/words';
+import BoxesInput from './BoxesInput';
 import styles from './LetterPositions.module.css';
 
-//??? move boxes to BoxesInput
 //??? rearrange by column using indices
 //??? implement graph per column
 export default function LetterPositions({ words }) {
@@ -18,36 +18,10 @@ export default function LetterPositions({ words }) {
 
   return (
     <div className={styles.main}>
-      {buildBoxes(selected, setSelected)}
+      <BoxesInput selected={selected} setSelected={setSelected} />
       {buildGraphs(byLetter, total, selected)}
       {buildColumns(sortedCounts, total, selected)}
     </div>
-  );
-}
-
-function buildBoxes(selected, setSelected) {
-  const indices = [0, 1, 2, 3, 4];
-
-  return (
-    <label className={styles.label}> 
-      <div className={styles.boxes}>
-        {indices.map((index) => {
-          const letter = selected[index] ?? '';
-          return (
-            <div className={styles.box}>
-              {letter}
-            </div>
-          );
-        })}
-      </div>
-      <input
-        className={styles.input}
-        type='text'
-        maxLength={5}
-        value={selected}
-        onInput={(e) => setSelected(e.target.value.toLowerCase())}
-      />
-    </label>
   );
 }
 
