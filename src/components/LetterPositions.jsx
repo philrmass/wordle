@@ -51,6 +51,7 @@ function buildBoxes(indices, selected, setSelected) {
 }
 
 function onlyLetters(e) {
+  alert(`key[${e.key}] code[${e.code}]`);
   const code = e.keyCode;
   const ok = code < 28 || (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
 
