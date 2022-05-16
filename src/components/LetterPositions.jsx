@@ -41,7 +41,7 @@ function buildBoxes(indices, selected, setSelected) {
         type='text'
         className={styles.input}
         value={selected}
-        onKeyDown={onlyLetters}
+        onKeyPress={onlyLetters}
         onInput={(e) => setSelected(e.target.value)}
       />
     </label>
