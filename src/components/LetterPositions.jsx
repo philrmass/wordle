@@ -41,9 +41,7 @@ function buildBoxes(indices, selected, setSelected) {
         type='text'
         className={styles.input}
         value={selected}
-        maxLength={5}
         onKeyDown={onlyLetters}
-        onKeyUp={onlyLetters}
         onInput={(e) => setSelected(e.target.value)}
       />
     </label>
@@ -51,7 +49,7 @@ function buildBoxes(indices, selected, setSelected) {
 }
 
 function onlyLetters(e) {
-  alert(`key[${e.key}] code[${e.code}]`);
+  alert(`key[${e.key}] code[${e.code}] kc[${e.keyCode}]`);
   const code = e.keyCode;
   const ok = code < 28 || (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
 
