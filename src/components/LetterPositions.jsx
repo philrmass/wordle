@@ -43,7 +43,7 @@ function buildBoxes(indices, selected, setSelected) {
         value={selected}
         maxLength={5}
         onKeyDown={onlyLetters}
-        onKeyPress={onlyLetters}
+        onKeyUp={onlyLetters}
         onInput={(e) => setSelected(e.target.value)}
       />
     </label>
