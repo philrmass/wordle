@@ -7,7 +7,7 @@ import styles from './LetterPositions.module.css';
 //??? rearrange by column using indices
 //??? implement graph
 export default function LetterPositions({ words }) {
-  const indices = Array.from(Array(5).keys());
+  const indices = [0, 1, 2, 3, 4];
   const byLetter = indices.map(index => countLettersByPosition(index, words));
   const sortedCounts = byLetter.map(byLetter => sortLetterCounts(byLetter));
   const total = words.length;
@@ -15,32 +15,16 @@ export default function LetterPositions({ words }) {
   const [selected, setSelected] = useState('');
   const percents = sortedCounts[4].map(sc => 100 * (sc[1] / total));
 
-  const onKeyDown = (key) => {
-    setSelected((last) => {
-      if (key === 'Backspace') {
-        return last.slice(0, -1);
-      } else {
-        const lowKey = key.toLowerCase();
-
-        if (lowKey.match(/^[a-z]$/)) {
-          const added = `${last}${lowKey}`;
-          return added.slice(0, 5);
-        }
-        return last;
-      }
-    });
-  };
-
   return (
     <div className={styles.main}>
-      {buildBoxes(indices, selected, onKeyDown)}
+      {buildBoxes(indices, selected, setSelected)}
       {buildGraphs(byLetter, total, selected)}
       {buildColumns(sortedCounts, total, selected)}
     </div>
   );
 }
 
-function buildBoxes(indices, selected, onKeyDown) {
+function buildBoxes(indices, selected, setSelected) {
   return (
     <label className={styles.label}> 
       <div className={styles.boxes}>
@@ -57,10 +41,22 @@ function buildBoxes(indices, selected, onKeyDown) {
         type='text'
         className={styles.input}
         value={selected}
-        onKeyDown={(e) => onKeyDown(e.key)}
+        maxLength={5}
+        onKeyDown={onlyLetters}
+        onInput={(e) => setSelected(e.target.value)}
       />
     </label>
   );
+}
+
+function onlyLetters(e) {
+  const code = e.keyCode;
+  const ok = code < 28 || (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
+
+  if (!ok) {
+    e.preventDefault();
+    return false;
+  }
 }
 
 function buildColumns(sortedCounts, total, selected) {
@@ -104,7 +100,7 @@ function buildLetter(count, total) {
 
 function buildGraphs(byLetter, total, selected) {
   //const { percent, green, yellow, gray } = getColors(value, total);
-  console.log('GR', byLetter, total, selected);
+  //console.log('GR', byLetter, total, selected);
 
   return (
     <div></div>
