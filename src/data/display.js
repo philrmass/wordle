@@ -22,8 +22,7 @@ export const displayElements = {
 export const displayDescriptions = {
   letterSearch: (total) => `letterSearch ${total}`,
   patternSearch: (total) => `patternSearch ${total}`,
-  positionCounts: (total) => `Shows the number of times each letter appears in
-  each of the positions in the ${total} words. Greens appear in that position at 
-  least 10% of the time, yellows at least 3% of the time, and grays at least 1% 
-  of the time. Click on a letter to see the percentages`, 
+  positionCounts: (total) => `The times each letter appears in each positions in the ${total} words. 
+  Greens appear in that position at least 10% of the time, yellows at least 3%, and grays at least 1%. 
+  Enter a word to see its values.`,
 };

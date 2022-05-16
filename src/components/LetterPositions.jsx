@@ -4,8 +4,9 @@ import classnames from 'classnames';
 import { countLettersByPosition, sortLetterCounts } from '../utilities/words';
 import styles from './LetterPositions.module.css';
 
+//??? move boxes to BoxesInput
 //??? rearrange by column using indices
-//??? implement graph
+//??? implement graph per column
 export default function LetterPositions({ words }) {
   const indices = [0, 1, 2, 3, 4];
   const byLetter = indices.map(index => countLettersByPosition(index, words));
@@ -17,14 +18,16 @@ export default function LetterPositions({ words }) {
 
   return (
     <div className={styles.main}>
-      {buildBoxes(indices, selected, setSelected)}
+      {buildBoxes(selected, setSelected)}
       {buildGraphs(byLetter, total, selected)}
       {buildColumns(sortedCounts, total, selected)}
     </div>
   );
 }
 
-function buildBoxes(indices, selected, setSelected) {
+function buildBoxes(selected, setSelected) {
+  const indices = [0, 1, 2, 3, 4];
+
   return (
     <label className={styles.label}> 
       <div className={styles.boxes}>
@@ -38,25 +41,14 @@ function buildBoxes(indices, selected, setSelected) {
         })}
       </div>
       <input
-        type='text'
         className={styles.input}
+        type='text'
+        maxLength={5}
         value={selected}
-        onKeyPress={onlyLetters}
-        onInput={(e) => setSelected(e.target.value)}
+        onInput={(e) => setSelected(e.target.value.toLowerCase())}
       />
     </label>
   );
-}
-
-function onlyLetters(e) {
-  alert(`key[${e.key}] code[${e.code}] kc[${e.keyCode}]`);
-  const code = e.keyCode;
-  const ok = code < 28 || (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
-
-  if (!ok) {
-    e.preventDefault();
-    return false;
-  }
 }
 
 function buildColumns(sortedCounts, total, selected) {
@@ -99,6 +91,7 @@ function buildLetter(count, total) {
 }
 
 function buildGraphs(byLetter, total, selected) {
+  console.log('graph', selected);
   //const { percent, green, yellow, gray } = getColors(value, total);
   //console.log('GR', byLetter, total, selected);
 
