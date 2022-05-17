@@ -7,7 +7,40 @@
   color: var(--white);
 }
 
-.column {
+.graph {
+  width: var(--box-size);
+}
+
+.graphBars {
+  width: var(--box-size);
+  height: calc(4 * var(--box-size));
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.positionBar {
+  border: 1px solid red;
+}
+
+.graphText {
+  text-align: center;
+  color: var(--black);
+  font-size: var(--size-sm);
+  white-space: pre;
+}
+
+.graphText {
+  margin-top: 4px;
+}
+
+.letterCounts {
   display: flex;
   flex-direction: column;
   gap: 1px;

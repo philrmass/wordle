@@ -5,43 +5,70 @@ import { countLettersByPosition, sortLetterCounts } from '../utilities/words';
 import BoxesInput from './BoxesInput';
 import styles from './LetterPositions.module.css';
 
-//??? rearrange by column using indices
-//??? implement graph per column
+const indices = [0, 1, 2, 3, 4];
+
 export default function LetterPositions({ words }) {
-  const indices = [0, 1, 2, 3, 4];
   const byLetter = indices.map(index => countLettersByPosition(index, words));
-  const sortedCounts = byLetter.map(byLetter => sortLetterCounts(byLetter));
   const total = words.length;
 
   const [selected, setSelected] = useState('');
-  const percents = sortedCounts[4].map(sc => 100 * (sc[1] / total));
 
   return (
     <div className={styles.main}>
       <BoxesInput selected={selected} setSelected={setSelected} />
-      {buildGraphs(byLetter, total, selected)}
-      {buildColumns(sortedCounts, total, selected)}
+      <div className={styles.columns}>
+        {buildColumns(selected, byLetter, total)}
+      </div>
     </div>
   );
 }
 
-function buildColumns(sortedCounts, total, selected) {
+function buildColumns(selected, byLetter, total) {
+  return indices.map(index => {
+    const letter = selected[index];
+    if (letter) {
+      return buildGraph(index, letter, byLetter, total);
+    }
+
+    const sortedCounts = byLetter.map(byLetter => sortLetterCounts(byLetter));
+    return buildLetterCounts(sortedCounts[index], total);
+  });
+}
+
+function buildGraph(index, letter, byLetter, total) {
+  const allCount = indices.reduce((sum, index) => sum + byLetter[index][letter], 0);
+  const positionCount = byLetter[index][letter];
+  const allPercent = (100 * allCount / total).toFixed(1);
+  const positionPercent = (100 * positionCount / total).toFixed(1);
+  const allLabel = `${allPercent}%\ntotal`;
+  const positionLabel = `${positionPercent}%\nhere`;
+
+  const allClasses = classnames(styles.bar, styles.yellow);
+  const positionClasses = classnames(styles.bar, styles.green);
+  const allStyle = { height: `${allPercent}%` };
+  const positionStyle = { height: `${positionPercent}%` };
+
   return (
-    <div className={styles.columns}>
-      {sortedCounts.map(counts => buildColumn(counts, total))}
+    <div className={styles.graph}>
+      <div className={styles.graphBars}>
+        <div className={allClasses} style={allStyle} />
+        <div className={positionClasses} style={positionStyle} />
+      </div>
+      <div className={styles.graphText}>{allLabel}</div>
+      <div className={styles.graphText}>{positionLabel}</div>
     </div>
   );
 }
 
-function buildColumn(counts, total) {
+function buildLetterCounts(counts, total) {
   return (
-    <div className={styles.column}>
-      {counts.map(count => buildLetter(count, total))}
+    <div className={styles.letterCounts}>
+      {counts.map(count => buildLetterCount(count, total))}
     </div>
   );
 }
 
-function buildLetter(count, total) {
+function buildLetterCount(count, total) {
   const letter = count[0];
   const value = count[1];
   const { green, yellow, gray } = getColors(value, total);
@@ -61,24 +88,6 @@ function buildLetter(count, total) {
         {value}
       </div>
     </div>
-  );
-}
-
-function buildGraphs(byLetter, total, selected) {
-  console.log('graph', selected);
-  //const { percent, green, yellow, gray } = getColors(value, total);
-  //console.log('GR', byLetter, total, selected);
-
-  return (
-    <div></div>
-    /*
-    <div
-      className={styles.graph}
-      onClick={() => onClick('')}
-    >
-      GRAPH
-    </div>
-    */
   );
 }
 

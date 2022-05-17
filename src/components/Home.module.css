@@ -28,7 +28,7 @@
 
 .dropdowns select {
   padding: 2px 4px;
-  border: var(--border);
+  border: 2px solid var(--border);
   border-radius: 4px;
   background-color: var(--white);
   font-size: var(--size-md);
