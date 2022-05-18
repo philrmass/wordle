@@ -129,10 +129,25 @@
   background: var(--gray);
 }
 
-.main__wHwG- {
+.main__SzV8l {
 }
 
-.main__SzV8l {
+.main__HlV3u {
+}
+
+.ratio__XhSSN {
+}
+
+.input__Mm3Cc {
+}
+
+.matches__oZGw7 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 8px;
+}
+
+.main__wHwG- {
 }
 
 .main__eYC4W {
@@ -226,4 +241,4 @@ h1 {
 }
 
 
-/*# sourceMappingURL=ssr-bundle.36593.css.map*/
+/*# sourceMappingURL=ssr-bundle.d7a5e.css.map*/
