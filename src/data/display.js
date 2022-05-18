@@ -1,6 +1,7 @@
 import LetterPositions from '../components/LetterPositions';
-import PatternSearch from '../components/PatternSearch';
 import LetterSearch from '../components/LetterSearch';
+import MatchWords from '../components/MatchWords';
+import PatternSearch from '../components/PatternSearch';
 
 export const wordsDefault = 'answers';
 export const wordNames = {
@@ -8,21 +9,24 @@ export const wordNames = {
   all: 'All Valid Guesses'
 };
 
-export const displayDefault = 'positionCounts';
+export const displayDefault = 'letterPositions';
 export const displayNames = {
+  letterPositions: 'Letter Counts Per Position',
   letterSearch: 'Letter Pattern Search',
+  matchWords: 'Best Start Words',
   patternSearch: 'Letter Pattern Search',
-  positionCounts: 'Letter Counts Per Position',
 }
 export const displayElements = {
+  letterPositions: LetterPositions,
   letterSearch: LetterSearch,
+  matchWords: MatchWords,
   patternSearch: PatternSearch,
-  positionCounts: LetterPositions,
 };
 export const displayDescriptions = {
-  letterSearch: (total) => `letterSearch ${total}`,
-  patternSearch: (total) => `patternSearch ${total}`,
-  positionCounts: (total) => `The times each letter appears in each positions in the ${total} words. 
+  letterPositions: (total) => `The times each letter appears in each positions in the ${total} words. 
   Greens appear in that position at least 10% of the time, yellows at least 3%, and grays at least 1%. 
   Enter a word to see its values.`,
+  letterSearch: (total) => `letterSearch ${total}`,
+  matchWords: () => 'match Words',
+  patternSearch: (total) => `patternSearch ${total}`,
 };

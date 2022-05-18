@@ -1,3 +1,11 @@
+import styles from './MatchWords.module.css';
+
+export default function MatchWords() {
+  return (
+    <div>MATCH-WORDS</div>
+  );
+}
+/*
 import { useState } from 'preact/hooks';
 import classnames from 'classnames';
 
@@ -10,6 +18,7 @@ const indices = [0, 1, 2, 3, 4];
 export default function LetterPositions({ words }) {
   const byLetter = indices.map(index => countLettersByPosition(index, words));
   const total = words.length;
+
   const [selected, setSelected] = useState('');
 
   return (
@@ -98,3 +107,4 @@ function getColors(value, total) {
 
   return { percent, green, yellow, gray };
 }
+*/
