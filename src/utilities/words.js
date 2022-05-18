@@ -23,3 +23,31 @@ export function sortLetterCounts(byLetter) {
 
   return entries.sort(byCount);
 }
+
+export function getMatches(words, answers) {
+  if (words.length === 0) {
+    return [];
+  }
+
+  return words.map((word) => {
+    const wordSums = answers.reduce((sums, answer) => {
+      const match = getMatch(word, answer);
+
+      return {
+        green: sums.green + match.green,
+        yellow: sums.yellow + match.yellow,
+      }
+    }, { green: 0, yellow: 0 });
+
+    const scale = 1 / words.length;
+    return {
+      word,
+      green: scale * wordSums.green,
+      yellow: scale * wordSums.yellow,
+    };
+  });
+}
+
+function getMatch(word, answer) {
+  return { green: 0.1, yellow: 0.2 };
+}

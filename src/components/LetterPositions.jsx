@@ -11,6 +11,7 @@ export default function LetterPositions({ words }) {
   const byLetter = indices.map(index => countLettersByPosition(index, words));
   const total = words.length;
   const [selected, setSelected] = useState('');
+  console.log('sellp', selected);
 
   return (
     <div className={styles.main}>

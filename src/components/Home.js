@@ -11,6 +11,10 @@ import {
   displayElements,
   displayDescriptions,
 } from '../data/display.js';
+import LetterPositions from '../components/LetterPositions';
+import LetterSearch from '../components/LetterSearch';
+import MatchWords from '../components/MatchWords';
+import PatternSearch from '../components/PatternSearch';
 import styles from './Home.module.css';
 
 const answers = answerWords.split('\n');
@@ -44,10 +48,23 @@ export default function Home() {
         {displayDescriptions[display](words.length)}
       </div>
       <div className={styles.display}>
-        {displayElements[display]({ words })}
+        {buildDisplay(display, words)}
       </div>
     </div>
   );
+}
+
+function buildDisplay(display, words) {
+  switch (display) {
+    case 'letterPositions':
+      return <LetterPositions words={words} />;
+    case 'letterSearch':
+      return <LetterSearch words={words} />;
+    case 'matchWords':
+      return <MatchWords words={words} />;
+    case 'patternSearch':
+      return <PatternSearch words={words} />;
+  }
 }
 
 function buildDropdown(namesObj, selectedName, onChange) {

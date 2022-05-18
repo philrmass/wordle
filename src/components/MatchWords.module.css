@@ -1,2 +1,14 @@
 .main {
 }
+
+.ratio {
+}
+
+.input {
+}
+
+.matches {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 8px;
+}
