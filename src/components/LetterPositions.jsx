@@ -43,8 +43,8 @@ function buildGraph(index, letter, byLetter, total) {
   const allLabel = `${allPercent}%\ntotal`;
   const positionLabel = `${positionPercent}%\nhere`;
 
-  const allClasses = classnames(styles.bar, styles.yellow);
-  const positionClasses = classnames(styles.bar, styles.green);
+  const allClasses = classnames(styles.bar, 'yellow');
+  const positionClasses = classnames(styles.bar, 'green');
   const allStyle = { height: `${allPercent}%` };
   const positionStyle = { height: `${positionPercent}%` };
 
@@ -74,9 +74,9 @@ function buildLetterCount(count, total) {
   const { green, yellow, gray } = getColors(value, total);
   const classes = classnames({
     [styles.letterCount]: true,
-    [styles.gray]: gray,
-    [styles.yellow]: yellow,
-    [styles.green]: green,
+    ['gray']: gray,
+    ['yellow']: yellow,
+    ['green']: green,
   });
 
   return (

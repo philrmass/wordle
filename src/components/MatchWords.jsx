@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import answerWords from '../data/answerWords.txt';
 import { getMatches } from '../utilities/words';
+import CountBoxes from './CountBoxes';
 import styles from './MatchWords.module.css';
 
 const answers = answerWords.split('\n');
@@ -36,9 +37,12 @@ export default function MatchWords({ words }) {
         {sorted.slice(0, 100).map(({ word, green, yellow }) => {
           return (
             <>
-              <div>{word}</div>
-              <div>{yellow.toFixed(2)}</div>
-              <div>{green.toFixed(2)}</div>
+              <div>
+                <div className={styles.word}>{word}</div>
+                <div className={styles.wordSpacer}> </div>
+              </div>
+              <CountBoxes count={yellow} className='yellow' />
+              <CountBoxes count={green} className='green' />
             </>
           );
         })}

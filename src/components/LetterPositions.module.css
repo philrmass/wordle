@@ -68,15 +68,3 @@
 .count {
   font-size: var(--size-sm);
 }
-
-.green {
-  background: var(--green);
-}
-
-.yellow {
-  background: var(--yellow);
-}
-
-.gray {
-  background: var(--gray);
-}

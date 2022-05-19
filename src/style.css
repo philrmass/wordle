@@ -26,3 +26,15 @@ h1 {
   font-weight: bold;
   transform: scale(1, 1.4);
 }
+
+.green {
+  background: var(--green);
+}
+
+.yellow {
+  background: var(--yellow);
+}
+
+.gray {
+  background: var(--gray);
+}

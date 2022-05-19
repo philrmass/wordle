@@ -9,7 +9,7 @@ export const displayDefault = 'matchWords';
 export const displayNames = {
   letterPositions: 'Letter Counts Per Position',
   letterSearch: 'Letter Pattern Search',
-  matchWords: 'Best Start Words',
+  matchWords: 'Best Matching Words',
   patternSearch: 'Letter Pattern Search',
 }
 export const displayDescriptions = {
@@ -17,7 +17,7 @@ export const displayDescriptions = {
   Greens appear in that position at least 10% of the time, yellows at least 3%, and grays at least 1%. 
   Enter a word to see its values.`,
   letterSearch: (total) => `letterSearch ${total}`,
-  matchWords: () => `Find the words that match the most answers, depending on your preference for
-  more green or yellow squares`,
+  matchWords: () => `Find the words that best match with the answer words, depending on your preference
+  for more green or yellow squares. Shows the average number of yellow and green squares`,
   patternSearch: (total) => `patternSearch ${total}`,
 };
