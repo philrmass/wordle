@@ -38,8 +38,8 @@ export function getMatches(words, answers) {
         yellow: sums.yellow + match.yellow,
       }
     }, { green: 0, yellow: 0 });
+    const scale = 1 / answers.length;
 
-    const scale = 1 / words.length;
     return {
       word,
       green: scale * wordSums.green,

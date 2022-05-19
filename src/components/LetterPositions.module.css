@@ -55,7 +55,6 @@
   align-items: center;
   border: 4px solid var(--white);
   background: var(--black);
-  cursor: pointer;
 }
 
 .letter {

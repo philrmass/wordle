@@ -8,7 +8,8 @@ const answers = answerWords.split('\n');
 
 export default function MatchWords({ words }) {
   const [matches, setMatches] = useState(() => getMatches(words, answers));
-  const [ratio, setRatio] = useState(1.5);
+  const [scale, setScale] = useState(0);
+  const ratio = Math.pow(15, scale);
   const bySum = (a, b) => {
     const sumA = a.yellow + ratio * a.green;
     const sumB = b.yellow + ratio * b.green;
@@ -22,16 +23,18 @@ export default function MatchWords({ words }) {
 
   return (
     <div className={styles.main}>
-      <div className={styles.ratio}>
+      <div className={styles.scale}>
+        <span>Prefer yellow</span>
         <input
           className={styles.input}
           type="range"
-          min="0.5"
-          max="10"
-          step="0.1"
-          value={ratio}
-          onChange={(e) => setRatio(e.target.value)}
+          min="-1"
+          max="1"
+          step="0.01"
+          value={scale}
+          onChange={(e) => setScale(e.target.value)}
         />
+        <span>Prefer green</span>
       </div>
       <div className={styles.matches}>
         {sorted.slice(0, 100).map(({ word, green, yellow }) => {

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "wordle-stats",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "license": "MIT",
   "homepage": "https://philrmass.github.io/wordle-stats",
   "scripts": {

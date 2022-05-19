@@ -1,5 +1,5 @@
-//??? add explanation, colors, click on a letter
-//??? add clickable letters
+//??? add useBest, to MatchWords, add worst option
+//??? save match words as json
 import Home from './components/Home';
 import './style';
 
