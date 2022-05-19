@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import answerWords from '../data/answerWords.txt';
 import { getMatches } from '../utilities/words';
 import styles from './MatchWords.module.css';
 
+const answers = answerWords.split('\n');
+
 export default function MatchWords({ words }) {
-  const answers = answerWords.split('\n');
-  const [matches, setMatches] = useState(getMatches(words, answers));
+  const [matches, setMatches] = useState(() => getMatches(words, answers));
   const [ratio, setRatio] = useState(1.5);
   const bySum = (a, b) => {
     const sumA = a.yellow + ratio * a.green;
@@ -14,7 +15,10 @@ export default function MatchWords({ words }) {
   };
   const sorted = [...matches].sort(bySum);
 
-  console.log('ratio', ratio);
+  useEffect(() => {
+    setMatches(getMatches(words, answers));
+  }, [words]);
+
   return (
     <div className={styles.main}>
       <div className={styles.ratio}>
@@ -29,12 +33,12 @@ export default function MatchWords({ words }) {
         />
       </div>
       <div className={styles.matches}>
-        {sorted.slice(0, 10).map(({ word, green, yellow }) => {
+        {sorted.slice(0, 100).map(({ word, green, yellow }) => {
           return (
             <>
               <div>{word}</div>
-              <div>{green.toFixed(2)}</div>
               <div>{yellow.toFixed(2)}</div>
+              <div>{green.toFixed(2)}</div>
             </>
           );
         })}

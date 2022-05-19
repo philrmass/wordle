@@ -49,5 +49,25 @@ export function getMatches(words, answers) {
 }
 
 function getMatch(word, answer) {
-  return { green: 0.1, yellow: 0.2 };
+  const matchChars = answer.split('');
+  const chars = word.split('');
+
+  const green = chars.reduce((sum, char, index) => {
+    if (char === matchChars[index]) {
+      matchChars[index] = null;
+      return sum + 1;
+    }
+    return sum;
+  }, 0);
+
+  const yellow = chars.reduce((sum, char, index) => {
+    const matchIndex = matchChars.indexOf(char);
+    if (matchIndex >= 0) {
+      matchChars[matchIndex] = null;
+      return sum + 1;
+    }
+    return sum;
+  }, 0);
+
+  return { green, yellow };
 }
