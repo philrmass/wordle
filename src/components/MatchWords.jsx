@@ -6,14 +6,14 @@ import styles from './MatchWords.module.css';
 
 const answers = answerWords.split('\n');
 
-export default function MatchWords({ words }) {
+export default function MatchWords({ words, useBest = true }) {
   const [matches, setMatches] = useState(() => getMatches(words, answers));
   const [scale, setScale] = useState(0);
-  const ratio = Math.pow(15, scale);
+  const ratio = Math.pow(15, useBest ? scale : -scale);
   const bySum = (a, b) => {
     const sumA = a.yellow + ratio * a.green;
     const sumB = b.yellow + ratio * b.green;
-    return sumB - sumA;
+    return useBest ? sumB - sumA : sumA - sumB;
   };
   const sorted = [...matches].sort(bySum);
 

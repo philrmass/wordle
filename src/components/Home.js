@@ -58,10 +58,12 @@ function buildDisplay(display, words) {
   switch (display) {
     case 'letterPositions':
       return <LetterPositions words={words} />;
+    case 'bestMatch':
+      return <MatchWords words={words} />;
+    case 'worstMatch':
+      return <MatchWords words={words} useBest={false} />;
     case 'letterSearch':
       return <LetterSearch words={words} />;
-    case 'matchWords':
-      return <MatchWords words={words} />;
     case 'patternSearch':
       return <PatternSearch words={words} />;
   }
