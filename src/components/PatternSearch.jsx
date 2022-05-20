@@ -87,5 +87,5 @@ function findMatchedLetters(pattern, index) {
 
 function replaceNonWords(input) {
   const nonWords = /[^A-Za-z]/ig;
-  return input.replaceAll(nonWords, '.');
+  return input.replace(nonWords, '.');
 }
