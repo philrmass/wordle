@@ -19,10 +19,5 @@
   margin-top: 8px;
   font-size: var(--size-sm);
   color: var(--gray);
-}
-
-.matches {
-}
-
-.match {
+  margin-bottom: 8px;
 }

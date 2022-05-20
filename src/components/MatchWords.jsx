@@ -1,13 +1,9 @@
-import { useEffect, useState } from 'react';
-import answerWords from '../data/answerWords.txt';
+import { useState } from 'react';
 import { getMatches } from '../utilities/words';
 import CountBoxes from './CountBoxes';
 import styles from './MatchWords.module.css';
 
-const answers = answerWords.split('\n');
-
-export default function MatchWords({ words, useBest = true }) {
-  const [matches, setMatches] = useState(() => getMatches(words, answers));
+export default function MatchWords({ words, matches, useBest = true }) {
   const [scale, setScale] = useState(0);
   const ratio = Math.pow(15, useBest ? scale : -scale);
   const bySum = (a, b) => {
@@ -16,10 +12,6 @@ export default function MatchWords({ words, useBest = true }) {
     return useBest ? sumB - sumA : sumA - sumB;
   };
   const sorted = [...matches].sort(bySum);
-
-  useEffect(() => {
-    setMatches(getMatches(words, answers));
-  }, [words]);
 
   return (
     <div className={styles.main}>

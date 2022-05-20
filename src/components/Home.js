@@ -3,6 +3,8 @@ import { useState } from 'preact/hooks';
 import { version } from '../../package.json';
 import answerWords from '../data/answerWords.txt';
 import allWords from '../data/allWords.txt';
+import answerMatches from '../data/answerMatches.json';
+import allMatches from '../data/allMatches.json';
 import {
   wordsDefault,
   wordNames,
@@ -24,6 +26,7 @@ export default function Home() {
   const [display, setDisplay] = useState(displayDefault);
   const [useAll, setUseAll] = useState(false);
   const words = useAll ? all : answers;
+  const matches = useAll ? allMatches : answerMatches;
 
   function changeDisplay(e) {
     setDisplay(e.target.value);
@@ -48,20 +51,20 @@ export default function Home() {
         {displayDescriptions[display](words.length)}
       </div>
       <div className={styles.display}>
-        {buildDisplay(display, words)}
+        {buildDisplay(display, words, matches)}
       </div>
     </div>
   );
 }
 
-function buildDisplay(display, words) {
+function buildDisplay(display, words, matches) {
   switch (display) {
     case 'letterPositions':
       return <LetterPositions words={words} />;
     case 'bestMatch':
-      return <MatchWords words={words} />;
+      return <MatchWords words={words} matches={matches} />;
     case 'worstMatch':
-      return <MatchWords words={words} useBest={false} />;
+      return <MatchWords words={words} matches={matches} useBest={false} />;
     case 'letterSearch':
       return <LetterSearch words={words} />;
     case 'patternSearch':

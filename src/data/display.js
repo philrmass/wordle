@@ -4,9 +4,7 @@ export const wordNames = {
   all: 'All Valid Guesses'
 };
 
-//??? restore
-export const displayDefault = 'patternSearch';
-//export const displayDefault = 'letterPositions';
+export const displayDefault = 'letterPositions';
 export const displayNames = {
   letterPositions: 'Letter Counts Per Position',
   bestMatch: 'Best Matching Words',
@@ -23,6 +21,7 @@ export const displayDescriptions = {
   worstMatch: () => `Find the words that least match with the answer words, depending on your preference
   for more green or yellow squares. Shows the average number of yellow and green squares`,
   patternSearch: (total) => `Search the ${total} words for letter patterns. Include a period in
-  your pattern to match any letter at that position. For instance '' will match , , and `,
-  letterSearch: (total) => `letterSearch ${total}`,
+  your pattern to match any letter at that position. For instance K.E will match ANKLE, KNEAD, and SKIER`,
+  letterSearch: (total) => `Search the ${total} words for ones that contain all of the entered 
+  letters. For instance, if you enter ZZY, you'll match DIZZY, FIZZY, FUZZY, and JAZZY`
 };

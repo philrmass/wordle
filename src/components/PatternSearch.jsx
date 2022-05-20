@@ -1,21 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import MatchedWord from './MatchedWord';
 import styles from './PatternSearch.module.css';
 
 export default function PatternSearch({ words }) {
-  const [search, setSearch] = useState('R.E');
+  const [search, setSearch] = useState('');
   const [matches, setMatches] = useState(null);
   const haveMatches = Boolean(matches);
   const count = haveMatches ? matches.length : words.length;
 
-  //??? complete description with example
-  //??? useEffect to find matches
-
-  const onSearch = (text) => {
-    const found = findMatches(text, words);
-
-    setSearch(text);
-    setMatches(found);
-  }
+  useEffect(() => {
+    setMatches(findMatches(search, words));
+  }, [words, search]);
 
   return (
     <div className={styles.main}>
@@ -24,7 +19,7 @@ export default function PatternSearch({ words }) {
         className={styles.input}
         type="text"
         value={search}
-        onInput={(e) => onSearch(e.target.value)}
+        onInput={(e) => setSearch(e.target.value)}
       />
       <div className={styles.count}>
         {`Found ${count} matches`}
@@ -36,24 +31,17 @@ export default function PatternSearch({ words }) {
 
 function buildMatches(haveMatches, allMatches, words, search) {
   const shownCount = 100;
-  const pattern = replaceNonWords(search);
+  const patternLetters = replaceNonWords(search).split('');
   const matches = generateMatches(haveMatches, allMatches, words, shownCount);
 
   return (
-    <div className={styles.matches}>
+    <>
       {matches.map(match => {
-        const letters = findMatchedLetters(pattern, match.index);
-        console.log(`${match.word} (${match.index}) (${pattern}) (${letters})`);
-        //??? make these look good showing the match
+        const colors = findMatchedColors(patternLetters, match.index);
 
-        return (
-          <div className={styles.match}>
-            {match?.word}
-            <div>{match.index}</div>
-          </div>
-        );
+        return <MatchedWord word={match.word} colors={colors}/>;
       })}
-    </div>
+    </>
   );
 }
 
@@ -81,8 +69,22 @@ function generateMatches(haveMatches, matches, words, count) {
   return words.slice(0, count).map(word => ({ word, index: -1 }));
 }
 
-function findMatchedLetters(pattern, index) {
-  return [];
+function findMatchedColors(patternLetters, offset) {
+  const letters = Array(5).fill(' ');
+
+  if (offset < 0) {
+    return letters;
+  }
+  
+  const matched = letters.map((letter, index) => {
+    const patternIndex = index - offset;
+    if (patternIndex >= 0 && patternIndex < patternLetters.length) {
+      return patternLetters[patternIndex] === '.' ? 'y' : 'g';
+    }
+    return letter;
+  });
+
+  return matched;
 }
 
 function replaceNonWords(input) {
