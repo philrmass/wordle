@@ -29,17 +29,21 @@ export default function LetterSearch({ words }) {
   );
 }
 
-function buildMatches(haveMatches, allMatches, words, search) {
-  const shownCount = 100;
-  const matches = generateMatches(haveMatches, allMatches, words, shownCount);
+function buildMatches(haveMatches, matches, words, search) {
+  const shownCount = 200;
+  const { shown, remaining } = generateMatches(haveMatches, matches, words, shownCount);
 
   return (
     <>
-      {matches.map(match => {
+      {shown.map(match => {
         const colors = findMatchedColors(match.indices);
-
         return <MatchedWord word={match.word} colors={colors}/>;
       })}
+      {(remaining > 0) &&
+        <div className={styles.count}>
+          {`... and ${remaining} more`}
+        </div>
+      }
     </>
   );
 }
@@ -76,9 +80,16 @@ function findMatches(search, words) {
 
 function generateMatches(haveMatches, matches, words, count) {
   if (haveMatches) {
-    return matches.slice(0, count);
+    const remaining = matches.length - count;
+    const shown = matches.slice(0, count);
+
+    return { shown, remaining };
   }
-  return words.slice(0, count).map(word => ({ word, indices: [] }));
+
+  const remaining = words.length - count;
+  const shown = words.slice(0, count).map(word => ({ word, indices: [] }));
+
+  return { shown, remaining };
 }
 
 function findMatchedColors(indices) {

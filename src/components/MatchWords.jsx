@@ -4,6 +4,7 @@ import CountBoxes from './CountBoxes';
 import styles from './MatchWords.module.css';
 
 export default function MatchWords({ words, matches, useBest = true }) {
+  const shownCount = 200;
   const [scale, setScale] = useState(0);
   const ratio = Math.pow(15, useBest ? scale : -scale);
   const bySum = (a, b) => {
@@ -29,7 +30,7 @@ export default function MatchWords({ words, matches, useBest = true }) {
         <span>Prefer green</span>
       </div>
       <div className={styles.matches}>
-        {sorted.slice(0, 100).map(({ word, green, yellow }) => {
+        {sorted.slice(0, shownCount).map(({ word, green, yellow }) => {
           return (
             <>
               <div>

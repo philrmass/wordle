@@ -29,18 +29,22 @@ export default function PatternSearch({ words }) {
   );
 }
 
-function buildMatches(haveMatches, allMatches, words, search) {
-  const shownCount = 100;
+function buildMatches(haveMatches, matches, words, search) {
+  const shownCount = 200;
   const patternLetters = replaceNonWords(search).split('');
-  const matches = generateMatches(haveMatches, allMatches, words, shownCount);
+  const { shown, remaining } = generateMatches(haveMatches, matches, words, shownCount);
 
   return (
     <>
-      {matches.map(match => {
+      {shown.map(match => {
         const colors = findMatchedColors(patternLetters, match.index);
-
         return <MatchedWord word={match.word} colors={colors}/>;
       })}
+      {(remaining > 0) &&
+        <div className={styles.count}>
+          {`... and ${remaining} more`}
+        </div>
+      }
     </>
   );
 }
@@ -64,9 +68,16 @@ function findMatches(text, words) {
 
 function generateMatches(haveMatches, matches, words, count) {
   if (haveMatches) {
-    return matches.slice(0, count);
+    const remaining = matches.length - count;
+    const shown = matches.slice(0, count);
+
+    return { shown, remaining };
   }
-  return words.slice(0, count).map(word => ({ word, index: -1 }));
+
+  const remaining = words.length - count;
+  const shown = words.slice(0, count).map(word => ({ word, index: -1 }));
+
+  return { shown, remaining };
 }
 
 function findMatchedColors(patternLetters, offset) {
