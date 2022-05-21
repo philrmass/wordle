@@ -159,10 +159,9 @@
 }
 
 .count__uvDM8 {
-  margin-top: 8px;
+  margin: 8px 0;
   font-size: var(--size-sm);
   color: var(--gray);
-  margin-bottom: 8px;
 }
 
 .main__InFax {
@@ -248,10 +247,9 @@
 }
 
 .count__YnFKv {
-  margin-top: 8px;
+  margin: 8px 0;
   font-size: var(--size-sm);
   color: var(--gray);
-  margin-bottom: 8px;
 }
 
 .main__eYC4W {
@@ -357,4 +355,4 @@ h1 {
 }
 
 
-/*# sourceMappingURL=ssr-bundle.20fe0.css.map*/
+/*# sourceMappingURL=ssr-bundle.88228.css.map*/
